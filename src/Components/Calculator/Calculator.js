@@ -89,7 +89,11 @@ class Calculator extends Component {
                 stateObj.result = parseInt(val1) * parseInt(val2).toFixed(2)        
                 break;
             case 'Divide':
-                stateObj.result = parseInt(val1) / parseInt(val2).toFixed(2)        
+                if(val2 === '0'){
+                    stateObj.result = "Can't Divide by Zero"    
+                }else{
+                    stateObj.result = parseInt(val1) / parseInt(val2).toFixed(2)        
+                }
                 break;
         
             default:
