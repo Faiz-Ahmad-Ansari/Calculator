@@ -80,16 +80,16 @@ class Calculator extends Component {
         
         switch (name) {
             case 'Add':
-                stateObj.result = parseInt(val1) + parseInt(val2)        
+                stateObj.result = (parseInt(val1) + parseInt(val2)).toFixed(2)        
                 break;
             case 'Substract':
-                stateObj.result = parseInt(val1) - parseInt(val2)        
+                stateObj.result = (parseInt(val1) - parseInt(val2)).toFixed(2)        
                 break;
             case 'Multiply':
-                stateObj.result = parseInt(val1) * parseInt(val2)        
+                stateObj.result = parseInt(val1) * parseInt(val2).toFixed(2)        
                 break;
             case 'Divide':
-                stateObj.result = parseInt(val1) / parseInt(val2)        
+                stateObj.result = parseInt(val1) / parseInt(val2).toFixed(2)        
                 break;
         
             default:
@@ -132,6 +132,7 @@ class Calculator extends Component {
         return stateObj[name].isError = isError
     }
 
+ // INPUT CHANGE HANDLER
     changeHandler = (e) => {
     
         let {name,value} = e.target
@@ -197,12 +198,6 @@ class Calculator extends Component {
             }
         )
     }
-
-    componentDidUpdate(){
-        console.log(this.props.result)
-    }
-
-
 
     render() { 
         return ( 
