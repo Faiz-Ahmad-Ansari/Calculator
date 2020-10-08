@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../Common/Header/Header';
 import validations from '../Reusable/Validations';
 import Buttons from '../Reusable/Button/Button';
+import './Calculator.css'
 const requiredError = 'This field is mandatory';
 
 class Calculator extends Component {
@@ -45,7 +46,7 @@ class Calculator extends Component {
                 },
                 {
                     name : 'Divide',
-                    sign : '/'
+                    sign : '÷'
                 },
             ],
 
@@ -150,17 +151,21 @@ class Calculator extends Component {
             ([key,val])=>{
                 
                 return(
-                    <div className='col-12 col-md-6 mt-2 mb-3' key={key}>
+                    <div className='col-12 col-md-6 mt-2 mb-3' key={key}>                        
                         <div className='row'>
-                            <div className='col-12 col-md-4 d-flex align-items-end'>
-                                <label >{val.fieldName}</label>
-                            </div>
+                            {/* <div className='col-12 col-md-4 d-flex align-items-end'>
+                                <label class="form-control-placeholder"  >{val.fieldName}</label>                                
+                            </div> */}
                             <div className='col-12 col-md-8'>
-                                <div className="form-group mb-0">   
+                                <div className="form-group mb-2 mt-1">   
                                     <input 
                                         type='text' className={`form-control ${val.isRequired?'hasRequired':''} ${val.isError?'hasError':''}`}
-                                        name={key}   onChange={this.changeHandler} value={val.value} disabled={val.isDisabled}/>
-                                
+                                        name={key}   onChange={this.changeHandler} value={val.value} disabled={val.isDisabled}
+                                        id={key} required
+                                        />
+
+                                    <label className="form-control-placeholder text-secondary" for={key}  >{val.fieldName}</label> 
+
                                     { val.isError &&
                                      <> 
                                        { 
@@ -202,8 +207,8 @@ class Calculator extends Component {
 
                     {this.renderButtons()} 
 
-                    <div>
-                        Result: <span>{this.state.result}</span>
+                    <div className='col-12 mt-3'>
+                        <span className='text-secondary'>Result:</span> <span className='font-weight-bold'>{this.state.result}</span>
                     </div>
                 </div>
             </>

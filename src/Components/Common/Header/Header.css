@@ -1,9 +1,10 @@
 .title{
     color: #fff;
-    font-size: 2em;
+    font-size: 1em;
     text-align: center;
     padding: 10px;
-    background-color: #5f9ea0;
+    background-color: #2e2bde;
+    background-image: linear-gradient(180deg, #9921e8 0, #4260d8 74%);
     border: 1px solid #5f9ea0;
     box-shadow: 0px 0px 2px #5f9ea0;
 }

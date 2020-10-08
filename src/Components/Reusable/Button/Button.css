@@ -1,4 +1,17 @@
-.not-allowed {
-    pointer-events: auto! important;
-    cursor: not-allowed! important;
+.btn-custom{
+    height: 55px;
+    width: 75px;
 }
+.btn-primary {
+    background-color: #2e2bde;
+    background-image: linear-gradient(180deg, #9921e8 0, #4260d8 74%);
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+    color: #fff;
+    background-color: #080808;
+    background-image: linear-gradient(180deg, #4c2c61 0, #9287b7 68%);
+}
+
+
+
