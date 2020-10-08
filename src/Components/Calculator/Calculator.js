@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Header from '../Common/Header/Header';
 import validations from '../Reusable/Validations';
 import Buttons from '../Reusable/Button/Button';
+// import Inputs from '../Reusable/Input/Input';
 import './Calculator.css'
 const requiredError = 'This field is mandatory';
 
@@ -12,7 +14,7 @@ class Calculator extends Component {
             // INPUTS
             inputs : {                
                 value1 : {
-                    fieldName : 'Enter Value 1',
+                      fieldName : 'Enter Value 1',
                     value : '',
                     validation: validations.numbers,
                     isError : false,
@@ -93,6 +95,7 @@ class Calculator extends Component {
             default:
                 break;
         }
+        this.props.sendResult(stateObj.result)
         this.setState({...stateObj})
 
     }
@@ -151,12 +154,11 @@ class Calculator extends Component {
             ([key,val])=>{
                 
                 return(
+                 
                     <div className='col-12 col-md-6 mt-2 mb-3' key={key}>                        
                         <div className='row'>
-                            {/* <div className='col-12 col-md-4 d-flex align-items-end'>
-                                <label class="form-control-placeholder"  >{val.fieldName}</label>                                
-                            </div> */}
-                            <div className='col-12 col-md-8'>
+                            
+                            <div className='col-12 col-md-12'>
                                 <div className="form-group mb-2 mt-1">   
                                     <input 
                                         type='text' className={`form-control ${val.isRequired?'hasRequired':''} ${val.isError?'hasError':''}`}
@@ -164,7 +166,7 @@ class Calculator extends Component {
                                         id={key} required
                                         />
 
-                                    <label className="form-control-placeholder text-secondary" for={key}  >{val.fieldName}</label> 
+                                    <label className="form-control-placeholder text-secondary"   >{val.fieldName}</label> 
 
                                     { val.isError &&
                                      <> 
@@ -196,6 +198,10 @@ class Calculator extends Component {
         )
     }
 
+    componentDidUpdate(){
+        console.log(this.props.result)
+    }
+
 
 
     render() { 
@@ -208,12 +214,24 @@ class Calculator extends Component {
                     {this.renderButtons()} 
 
                     <div className='col-12 mt-3'>
-                        <span className='text-secondary'>Result:</span> <span className='font-weight-bold'>{this.state.result}</span>
+                        <span className='text-secondary'>Result:</span> <span className='font-weight-bold'>{this.props.result}</span>
                     </div>
                 </div>
             </>
          );
     }
 }
- 
-export default Calculator;
+
+const mapStateToProps = state => {
+    return {
+        result: state.result
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        sendResult: (result) => dispatch({type: 'RESULT',payLoad:result})
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Calculator);
